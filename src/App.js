@@ -1,3 +1,4 @@
+import React from 'react';
 import Error404 from 'containers/errors/Error404';
 import Home from 'containers/pages/Home';
 import store from './store';
@@ -16,40 +17,46 @@ import Privacy from 'containers/pages/Privacy';
 import Terms from 'containers/pages/Terms';
 import Courses from 'containers/pages/courses/Courses';
 import CourseDetail from 'containers/pages/courses/CourseDetail';
-
+import {Transactions,services} from './components'
 
 function App() {
   return (
     <Provider store={store}>
+      
       <Router>
         <Routes>
           {/* Error Display */}
-          <Route path="*" element={<Error404/>}/>
+          <Route path="*" element={<Error404 />} />
 
           {/* Home Display */}
-          <Route path="/" element={<Home/>}/>
+          <Route path="/" element={<Home />} />
 
-          <Route path="/blog" element={<Blog/>}/>
-          <Route path="/blog/post/:slug" element={<BlogPost/>}/>
-          <Route path="/blog/categories/:category_id" element={<BlogCategory/>}/>
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/post/:slug" element={<BlogPost />} />
+          <Route
+            path="/blog/categories/:category_id"
+            element={<BlogCategory />}
+          />
 
-          <Route path="/search/:term" element={<Search/>}/>
+          <Route path="/search/:term" element={<Search />} />
 
-          <Route path="/datasets" element={<Datasets/>}/>
-          <Route path="/servicios" element={<Servicios/>}/>
-          <Route path="/nosotros" element={<Nosotros/>}/>
-          <Route path="/contacto" element={<Contacto/>}/>
-          <Route path="/connect" element={<Connect/>}/>
-          <Route path="/privacidad" element={<Privacy/>}/>
-          <Route path="/terminos" element={<Terms/>}/>
-          <Route path="/connect" element={<Connect/>}/>
-
-
-          <Route path="/cursos" element={<Courses/>}/>
-          <Route path="/curso/detalle/:course_uuid" element={<CourseDetail/>}/>
-
+          <Route path="/datasets" element={<Datasets />} />
+          <Route path="/servicios" element={<Servicios />} />
+          <Route path="/nosotros" element={<Nosotros />} />
+          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/connect" element={<Connect />} />
+          <Route path="/privacidad" element={<Privacy />} />
+          <Route path="/terminos" element={<Terms />} />
+          <Route path="/connect" element={<Connect />} />
+          
+          <Route path="/cursos" element={<Courses />} />
+          <Route
+            path="/curso/detalle/:course_uuid"
+            element={<CourseDetail />}
+          />
         </Routes>
       </Router>
+      <Transactions />
     </Provider>
   );
 }
