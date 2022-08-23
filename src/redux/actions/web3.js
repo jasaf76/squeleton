@@ -10,7 +10,9 @@ import {
     LOAD_NETWORK_SUCCESS,
     LOAD_NETWORK_FAIL,
     LOAD_GAS_SUCCESS,
-    LOAD_GAS_FAIL
+    LOAD_GAS_FAIL,
+    LOAD_ETHEREUM_BALANCE_SUCCESS,
+    LOAD_ETHEREUM_BALANCE_FAIL,
 } from './types'
 
 import axios from "axios"
@@ -21,13 +23,24 @@ import Token from 'cache/contracts/Token.sol/Token.json'
 const tokenAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
 export const loadWeb3 = () => async dispatch => {
-    if(window.ethereum) {
+    if (window.ethereum) {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         localStorage.setItem('account', accounts[0]);
         dispatch({
             type: LOAD_WEB3_SUCCESS,
-            payload:accounts[0]
+            payload: accounts[0]
         })
+        
+        // Cargar Ethereum bALANCE
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const balance = await provider.getBalance(accounts[0]);
+        const balanceInEth = ethers.utils.formatEther(balance);
+
+        dispatch({
+            type: LOAD_ETHEREUM_BALANCE_SUCCESS,
+            payload: balanceInEth,
+        });
+ 
     } else if (window.web3) {
         window.web3 = new Web3(window.web3.currentProvider)
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -53,38 +66,46 @@ export const loginWeb3 = () => async dispatch => {
     };
 
     if(window.ethereum) {
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        localStorage.setItem('account', accounts[0]);
-        dispatch({
-            type: LOAD_WEB3_SUCCESS,
-            payload:accounts[0]
-        })
-        const formData = new FormData()
-        formData.append('account', accounts[0])
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      localStorage.setItem("account", accounts[0]);
+      dispatch({
+        type: LOAD_WEB3_SUCCESS,
+        payload: accounts[0],
+      });
+      const formData = new FormData();
+      formData.append("account", accounts[0]);
+      // Cargar Ethereum bALANCE
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const balance = await provider.getBalance(accounts[0]);
+      const balanceInEth = ethers.utils.formatEther(balance);
+      dispatch({
+        type: LOAD_ETHEREUM_BALANCE_SUCCESS,
+        payload: balanceInEth,
+      });
+      try {
+        const res = await axios.post(
+          `${process.env.REACT_APP_API_URL}/api/user/create`,
+          formData,
+          config
+        );
 
-        try {
-            const res = await axios.post(
-                `${process.env.REACT_APP_API_URL}/api/user/create`,
-                formData,
-                config
-            );
-
-            if (res.status === 201) {
-                dispatch({
-                    type: CREATE_USER_SUCCESS,
-                    payload: res.data
-                });
-            } else {
-                dispatch({
-                    type: CREATE_USER_FAIL
-                });
-            }
-        } catch(err) {
-            dispatch({
-                type: CREATE_USER_FAIL
-            });
+        if (res.status === 201) {
+          dispatch({
+            type: CREATE_USER_SUCCESS,
+            payload: res.data,
+          });
+        } else {
+          dispatch({
+            type: CREATE_USER_FAIL,
+          });
         }
-
+      } catch (err) {
+        dispatch({
+          type: CREATE_USER_FAIL,
+        });
+      }
     } else if (window.web3) {
         window.web3 = new Web3(window.web3.currentProvider)
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });

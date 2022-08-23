@@ -21,13 +21,16 @@ function Home({
     },[])
 
     return(
-        <FullWidthLayout>
-            <Header/>
+        <FullWidthLayout >
+           <div className="max-w-full mx-auto">
+                <Header />
+            </div>
             <Logos/>
             <BlogList get_blog_list_page={get_blog_list_page} blog_list={blog_list}/>
             <Incentives/>
             <FAQs/>
-            <CTA/>
+            <CTA />
+            
         </FullWidthLayout>
     )
 }

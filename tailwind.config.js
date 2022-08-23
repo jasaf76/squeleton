@@ -7,6 +7,9 @@ module.exports = {
   darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
+      screens: {
+        mf: "990px",
+      },
       colors: {
         "dark-main": "#181818",
         "dark-bg": "#22202A",
