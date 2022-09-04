@@ -53,15 +53,25 @@ class UserAccount(models.Model):
     profile_info = models.TextField(max_length=150, null=True, blank=True)
     age_limit=models.CharField(max_length=14,choices=AGE_CHOICES, null=True, blank=True)
 
+    is_active = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+
     verified = models.BooleanField(default=False)
+    requested_verified = models.BooleanField(default=False)
 
-    total_earnings = models.IntegerField(default=0, blank=False)
-    sales = models.IntegerField(default=0, blank=False)
-
-    total_spent = models.IntegerField(default=0, blank=False)
-
+    telefon= models.CharField(max_length=32, blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
+    profesion= models.TextField(blank=True, max_length=255, null=True)
+    pais = models.CharField(max_length=255, blank=True, null=True)
+    edad = models.IntegerField(blank=True, null=True)
+    salario = models.IntegerField(blank=True, null=True)
+    experiencia = models.DecimalField(
+        max_digits=3, decimal_places=2, blank=True, null=True)
+    comprado = models.BooleanField(blank=True, null=True)
 
+    def __str__(self):
+        return self.account
+    
     def __str__(self):
         return self.email
 

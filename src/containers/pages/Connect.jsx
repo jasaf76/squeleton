@@ -5,11 +5,11 @@ import { connect } from "react-redux"
 import { Navigate, useNavigate } from "react-router-dom"
 import { loadWeb3, loginWeb3 } from "redux/actions/web3"
 
-function Connect({loginWeb3, account}){
+function Connect({loginWeb3, account, my_user, loading}){
 
     const navigate = useNavigate()
 
-    if(account){
+    if(my_user){
         return <Navigate to="/"/>
     }
     
@@ -49,7 +49,10 @@ function Connect({loginWeb3, account}){
 }
 
 const mapStateToProps = state => ({
-    account: state.web3.account
+    account: state.web3.account,
+    my_user: state.user.my_user,
+    loading: state.web3.loading
+
 })
 
 export default connect(mapStateToProps,{

@@ -6,4 +6,4 @@ from . import models
 @admin.register(models.UserAccount)
 class PostAdmin(admin.ModelAdmin):
     list_display = ('account','username', 'verified')
-
+    search_fields = ('account', 'username', )

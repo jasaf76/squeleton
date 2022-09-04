@@ -18,7 +18,7 @@ import {
 import axios from "axios"
 import { ethers } from 'ethers';
 import Web3 from "web3/dist/web3.min";
-
+import { create_user, get_my_user_details } from "./user";
 import Token from 'cache/contracts/Token.sol/Token.json'
 const tokenAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
@@ -84,6 +84,9 @@ export const loginWeb3 = () => async dispatch => {
         type: LOAD_ETHEREUM_BALANCE_SUCCESS,
         payload: balanceInEth,
       });
+      // CREAR USUARIO DE DJANGO
+      await dispatch(create_user());
+      await dispatch(get_my_user_details());
       try {
         const res = await axios.post(
           `${process.env.REACT_APP_API_URL}/api/user/create`,

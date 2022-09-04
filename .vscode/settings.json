@@ -31,7 +31,9 @@
     "terminal.selectionBackground": "#00c2ff",
     "terminal.selectionForeground": "#0e7cea",
     "terminalCursor.foreground": "#ff0000",
-    "terminalCursor.selectionBackground": "#00c2ff"
+    "terminalCursor.selectionBackground": "#00c2ff",
   },
   "peacock.color": "#ff3d00"
+}
+acock.color": "#ff3d00"
 }

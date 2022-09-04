@@ -16,12 +16,12 @@ import Privacy from "containers/pages/Privacy";
 import Terms from "containers/pages/Terms";
 import Courses from "containers/pages/courses/Courses";
 import CourseDetail from "containers/pages/courses/CourseDetail";
+import Profile from "containers/pages/user/Profile";
 
 
 function App() {
   return (
     <div className="gradient-bg-welcome">
-    
       <Provider store={store}>
         <Router>
           <Routes>
@@ -40,7 +40,7 @@ function App() {
             />
 
             <Route path="/search/:term" element={<Search />} />
-
+            <Route path="/perfil/:user_account" element={<Profile />} />
             <Route path="/datasets" element={<Datasets />} />
             <Route path="/servicios" element={<Servicios />} />
             <Route path="/nosotros" element={<Nosotros />} />
@@ -57,7 +57,6 @@ function App() {
             />
           </Routes>
         </Router>
-  
       </Provider>
     </div>
   );

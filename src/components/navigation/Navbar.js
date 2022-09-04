@@ -55,7 +55,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-function Navbar({ account, ethereum_balance }) {
+function Navbar({ account, ethereum_balance,network, my_user }) {
   const [effectLogin, setEffectLogin] = useState(false);
 
   function popoverTransition() {
@@ -72,12 +72,13 @@ function Navbar({ account, ethereum_balance }) {
           <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
             <div className="relative grid gap-8 bg-white dark:bg-dark-main p-7">
               <NavLink
-                to="#"
+                to={`/perfil/${my_user && my_user.account}`}
                 className="-m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out border dark:border-dark-third shadow dark:hover:bg-dark-third hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-gray-500 focus-visible:ring-opacity-50">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center text-white dark:text-dark-txt sm:h-12 sm:w-12">
                   <img
-                    src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    // src={my_user && my_user.picture}
+                    src={`${process.env.REACT_APP_API_URL}${
+                      my_user && my_user.picture
+                    }`}
                   />
                 </div>
                 <div className="ml-4">
@@ -87,32 +88,30 @@ function Navbar({ account, ethereum_balance }) {
                 </div>
               </NavLink>
 
-              {/* <NavLink
-                                to={`/`}
-                                className="-m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out dark:hover:bg-dark-third hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-gray-500 focus-visible:ring-opacity-50"
-                            >
-                                <div className="flex h-8 w-8 shrink-0 items-center justify-center text-white sm:h-12 sm:w-12">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="text-gray-700 dark:text-dark-txt bg-gray-100 dark:bg-dark-second rounded-xl p-2"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                                        />
-                                    </svg>
-                                </div>
-                                <div className="ml-4">
-                                    <p className="text-sm font-gilroy-medium dark:text-dark-txt text-gray-900">
-                                        Wishlist
-                                    </p>
-                                </div>
-                            </NavLink> */}
+              <NavLink
+                to={`/`}
+                className="-m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out dark:hover:bg-dark-third hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-gray-500 focus-visible:ring-opacity-50">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center text-white sm:h-12 sm:w-12">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="text-gray-700 dark:text-dark-txt bg-gray-100 dark:bg-dark-second rounded-xl p-2"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                    />
+                  </svg>
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-gilroy-medium dark:text-dark-txt text-gray-900">
+                    Wishlist
+                  </p>
+                </div>
+              </NavLink>
             </div>
             <div className="bg-gray-50 dark:bg-dark-second p-4">
               <div
@@ -271,7 +270,7 @@ function Navbar({ account, ethereum_balance }) {
     <Fragment>
       <NavLink
         to="/connect"
-        className="ml-6 inline-flex items-center px-4 py-2 border border-transparent text-sm font-gilroy-medium rounded-md shadow-button text-black bg-white hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+        className="bg-[#29e39c] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#119963] text-indigo-900 text-bold   motion-safe:animate-bounce">
         Acceder
       </NavLink>
     </Fragment>
@@ -495,6 +494,7 @@ function Navbar({ account, ethereum_balance }) {
 const mapStateToProps = (state) => ({
   account: state.web3.account,
   ethereum_balance: state.web3.ethereum_balance,
+  my_user: state.user.my_user
 });
 
 export default connect(mapStateToProps, {})(Navbar);
