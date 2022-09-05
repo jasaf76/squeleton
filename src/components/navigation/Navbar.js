@@ -36,14 +36,14 @@ const social = {
   social: [
     {
       name: 'YouTube',
-      href: 'https://youtube.com/solopython',
+      href: 'https://carednewhope.com',
       icon: (props) => (
         <i className='bx bxl-youtube text-xl mt-0.5'></i>
       ),
     },
     {
       name: 'GitHub',
-      href: 'https://github.com/apholdings',
+      href: 'https://github.com/jasaf76',
       icon: (props) => (
         <i className='bx bxl-github text-xl mt-0.5' ></i>
       ),
@@ -195,7 +195,9 @@ function Navbar({ account, ethereum_balance,network, my_user }) {
                     <img
                       className="h-6 w-6 rounded-full text-gray-400 dark:text-white inline-flex ml-1.5 mx-1"
                       // src={my_user && my_user.picture}
-                      src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      src={`${process.env.REACT_APP_API_URL}${
+                      my_user && my_user.picture
+                    }`}
                       alt=""
                     />
                   </Popover.Button>
@@ -356,7 +358,7 @@ function Navbar({ account, ethereum_balance,network, my_user }) {
                     <NavLink to="/">
                       {/* Dark Image */}
                       <img
-                        src="https://bafybeieh27hiity5cm7q2z5tic7oka6wd52dxnmqj5wtducckqic4c4aia.ipfs.dweb.link/Solopython-logo.png"
+                        src="https://res.cloudinary.com/jasaf77/image/upload/v1662358846/logo_lter4i.gif"
                         width={35}
                         height={25}
                         layout="fixed"
@@ -365,7 +367,7 @@ function Navbar({ account, ethereum_balance,network, my_user }) {
                       />
                       {/* White Image */}
                       <img
-                        src="https://bafybeieh27hiity5cm7q2z5tic7oka6wd52dxnmqj5wtducckqic4c4aia.ipfs.dweb.link/Solopython-logo.png"
+                        src="https://res.cloudinary.com/jasaf77/image/upload/v1662358846/logo_lter4i.gif"
                         width={35}
                         height={25}
                         layout="fixed"
