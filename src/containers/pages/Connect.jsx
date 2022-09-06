@@ -1,5 +1,5 @@
 import { ChevronRightIcon } from "@heroicons/react/solid"
-import Header from "components/pages/connect/Header"
+
 import FullWidthLayout from "hocs/layouts/FullWidthLayout"
 import { connect } from "react-redux"
 import { Navigate, useNavigate } from "react-router-dom"
@@ -15,7 +15,7 @@ function Connect({loginWeb3, account, my_user, loading}){
     
     return(
         <FullWidthLayout>
-            <Header/>
+           
             <div className="bg-white dark:bg-dark-main hover:dark:bg-dark-second hover:bg-gray-50 shadow overflow-hidden sm:rounded-md">
                 <ul role="list" className="divide-y divide-gray-200">
                     <li onClick={()=>loginWeb3()}>

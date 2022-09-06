@@ -1,9 +1,11 @@
 import BlogList from "components/blog/BlogList";
+import CMCTable from "components/cmc-table/CMCTable";
 import CTA from "components/home/CTA";
 import FAQs from "components/home/FAQs";
 import Header from "components/home/Header";
 import Incentives from "components/home/Incentives";
 import Logos from "components/home/Logos";
+import Trending from "components/trending";
 import FullWidthLayout from "hocs/layouts/FullWidthLayout";
 import { useEffect } from "react";
 import { connect } from "react-redux";
@@ -22,7 +24,9 @@ function Home({
 
     return(
         <FullWidthLayout >
-           <div className="max-w-full mx-auto">
+            <div className="max-w-full mx-auto">
+                <Trending />
+                <CMCTable/>
                 <Header />
             </div>
             <Logos/>
