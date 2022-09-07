@@ -27,7 +27,7 @@ const CMCTable = () => {
       console.log(e.message)
     }
   }, [getTopTenCoins])
-
+  console.log(coinData)
   return (
     <div className='text-white font-bold'>
       <div className='mx-auto max-w-screen-2xl'>
@@ -38,6 +38,7 @@ const CMCTable = () => {
             coinData.map((coin, index) => {
               return (
                 <CMCtableRow
+                  
                   key={index}
                   starNum={coin.cmc_rank}
                   coinName={coin.name}

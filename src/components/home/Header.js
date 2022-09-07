@@ -188,7 +188,7 @@ function Header() {
       <div className="flex max-w-full max-auto justify-center items-center">
         <div className="flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
           <div className="flex flex-1 justify-start flex-col mf:mr-10">
-            <h1 className="text-3xl sm:text-5xl font-bold text-lime text-gradient-2 py-1">
+            <h1 className="text-3xl sm:text-5xl font-bold text-lime py-1  text-gradient-2">
               Senden Sie Crypto <br /> in die ganze Welt
             </h1>
             <p className="text-lime-400 text-left m-5 font-light md:w-9/12 w-11/12 text-base">

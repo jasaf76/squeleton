@@ -48,7 +48,7 @@ const Trending = () => {
     <div className="text-white">
       <div className={styles.trendingWrapper}>
         <div className="flex justify-between">
-          <h1 className={styles.h1}>
+          <h1 className="text-3xl sm:text-3xl font-bold text-lime py-1  text-gradient-2">
             Heute Kurs des Criptomarkets bei Carednewhope
           </h1>
 
@@ -64,17 +64,17 @@ const Trending = () => {
         </div>
         <br />
         <div className="flex">
-          <p>
+          <p >
             Die globale Krypto-Marktkapitalisierung beträgt $1,74T, ein &nbsp;{" "}
           </p>
           <span>
             {" "}
             <Rate isIncrement={true} rate="0.53%" />{" "}
           </span>
-          <p>
-            {" "}
+          <p  >
+            
             &nbsp; Rückgang im Laufe des letzten Tages.{" "}
-            <span className="underline">Mehr lesen</span>{" "}
+            <span className="underline text-blue-600">Mehr lesen</span>{" "}
           </p>
         </div>
         <br />

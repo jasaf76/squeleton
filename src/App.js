@@ -17,47 +17,57 @@ import Terms from "containers/pages/Terms";
 import Courses from "containers/pages/courses/Courses";
 import CourseDetail from "containers/pages/courses/CourseDetail";
 import Profile from "containers/pages/user/Profile";
+import { MoralisProvider } from "react-moralis";
+import { CoinMarketProvider } from "./context/context";
 
 
 function App() {
+
   return (
     <div className="gradient-bg-welcome">
-      <Provider store={store}>
-        <Router>
-          <Routes>
-            {/* Error Display */}
-            <Route path="*" element={<Error404 />} />
+      <MoralisProvider
+        serverUrl="https://zloqy7uokpqs.usemoralis.com:2053/server"
+        appId="LwgSVFfznMyC82Nih1wfQseSm8lf2dfEmwkSSucK">
+        <CoinMarketProvider>
+         
+          <Provider store={store}>
+            <Router>
+              <Routes>
+                {/* Error Display */}
+                <Route path="*" element={<Error404 />} />
 
-            {/* Home Display */}
+                {/* Home Display */}
 
-            <Route path="/" element={<Home />} />
+                <Route path="/" element={<Home />} />
 
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/post/:slug" element={<BlogPost />} />
-            <Route
-              path="/blog/categories/:category_id"
-              element={<BlogCategory />}
-            />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/post/:slug" element={<BlogPost />} />
+                <Route
+                  path="/blog/categories/:category_id"
+                  element={<BlogCategory />}
+                />
 
-            <Route path="/search/:term" element={<Search />} />
-            <Route path="/perfil/:user_account" element={<Profile />} />
-            <Route path="/datasets" element={<Datasets />} />
-            <Route path="/servicios" element={<Servicios />} />
-            <Route path="/nosotros" element={<Nosotros />} />
-            <Route path="/contacto" element={<Contacto />} />
-            <Route path="/connect" element={<Connect />} />
-            <Route path="/privacidad" element={<Privacy />} />
-            <Route path="/terminos" element={<Terms />} />
-            <Route path="/connect" element={<Connect />} />
+                <Route path="/search/:term" element={<Search />} />
+                <Route path="/perfil/:user_account" element={<Profile />} />
+                <Route path="/datasets" element={<Datasets />} />
+                <Route path="/servicios" element={<Servicios />} />
+                <Route path="/nosotros" element={<Nosotros />} />
+                <Route path="/contacto" element={<Contacto />} />
+                <Route path="/connect" element={<Connect />} />
+                <Route path="/privacidad" element={<Privacy />} />
+                <Route path="/terminos" element={<Terms />} />
+                <Route path="/connect" element={<Connect />} />
 
-            <Route path="/cursos" element={<Courses />} />
-            <Route
-              path="/curso/detalle/:course_uuid"
-              element={<CourseDetail />}
-            />
-          </Routes>
-        </Router>
-      </Provider>
+                <Route path="/cursos" element={<Courses />} />
+                <Route
+                  path="/curso/detalle/:course_uuid"
+                  element={<CourseDetail />}
+                />
+              </Routes>
+            </Router>
+          </Provider>
+        </CoinMarketProvider>
+      </MoralisProvider>
     </div>
   );
 }
