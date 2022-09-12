@@ -1,4 +1,6 @@
+import { useLocation } from "react-router-dom";
 
+import { NavLink } from "react-router-dom";
 const graphImages = [
   "https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/52.svg",
   "https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/1.svg",
@@ -14,28 +16,53 @@ const graphImages = [
   "https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/7653.svg",
 ];
 
- const getRandomGraph = () => {
-   const rndInt = Math.floor(Math.random() * 10) + 1;
-   return graphImages[rndInt];
- };
+const CoinRow = ({ coin, index, coinSymbol, coinName, price }) => {
+  const getRandomGraph = () => {
+    const rndInt = Math.floor(Math.random() * 10) + 1;
+    return graphImages[rndInt];
+  };
 
-const CoinRow = ({ coin, index }) => {
+  const router = useLocation();
+
+  const viewCoinDetails = () => {
+    router.push(`/coins/${coin.id}`);
+  };
+
+  const viewPrice = () => {
+    router.push(
+      `/currencies/price?symbol=${coinSymbol}&coin=${coinName}&price=${price}`
+    );
+  };
+
+  const formatNum = (num) => {
+    return Number(num.toFixed(2)).toLocaleString();
+  };
   return (
     <table className="text-white  text-center border-b border-gray-800 text-[0.93rem] flex   align-super ml-[200px] mt-4">
       <td className="text-white text-center w-[50px] mr-4">{index}</td>
+
+      <td className="cursor-pointer"></td>
+
       <td className="text-white text-center ">
-        <img
-          src={coin.image}
-          alt=""
-          className="img-fluid me-4 mr-4"
-          style={{ width: "14%" }}
-        />
+        <NavLink to={`/coins/${coin.id}`}>
+          <img
+            src={coin.image}
+            alt=""
+            className="img-fluid me-4 mr-4"
+            style={{ width: "14%" }}
+            name={coin.name}
+            icon={coin.icon}
+            clicked={viewCoinDetails}
+          />
+        </NavLink>
         <span className="text-white mr-2 text-center">{coin.name}</span>
         <span className="ms-3 text-zinc-400 text-center ">{coin.symbol}</span>
       </td>
+
       <td className=" text-white  mr-8 text-center flex-auto">
         ${coin.current_price.toLocaleString()}
       </td>
+
       <td
         className={
           coin.price_change_percentage_24h > 0

@@ -1,5 +1,5 @@
 import BlogList from "components/blog/BlogList";
-import CMCTable from "components/cmc-table/CMCTable";
+
 import CTA from "components/home/CTA";
 import FAQs from "components/home/FAQs";
 import Header from "components/home/Header";
@@ -42,7 +42,7 @@ function Home({ blog_list, get_blog_list, get_blog_list_page }) {
       <div className="max-w-full mx-auto">
         <Trending />
         <Header />
-        <CMCTable />
+    
         <TableCoins coins={coins} search={search} />
       </div>
       <Logos />

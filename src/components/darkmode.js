@@ -1,7 +1,7 @@
 import useDarkMode from "hooks/useDarkMode";
 import { Switch } from "@headlessui/react";
 import { useState } from "react";
-
+import CoinNameRow from '../components/CoinRow';
 
 function DarkModeSwitch(){
     const [darkTheme, setDarkTheme] = useDarkMode();
