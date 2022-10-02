@@ -13,6 +13,7 @@ import { get_blog_list, get_blog_list_page } from "redux/actions/blog";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import TableCoins from "../../components/TableCoins";
+import CMCtableHeader from "components/cmc-table/cmcTableHeader";
 
 function Home({ blog_list, get_blog_list, get_blog_list_page }) {
   useEffect(() => {
@@ -41,8 +42,9 @@ function Home({ blog_list, get_blog_list, get_blog_list_page }) {
     <FullWidthLayout>
       <div className="max-w-full mx-auto">
         <Trending />
+
         <Header />
-    
+        <CMCtableHeader/>
         <TableCoins coins={coins} search={search} />
       </div>
       <Logos />

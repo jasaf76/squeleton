@@ -1,6 +1,7 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect, useRef} from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import Typed from "typed.js";
+import styles from "../../js/styles.css"
 import { toast } from "react-toastify";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { SiEthereum } from "react-icons/si";
@@ -183,15 +184,61 @@ function Header() {
     </div>
   );
 
+
+
+
+    const el = useRef(null);
+
+    useEffect(() => {
+      const typed = new Typed(el.current, {
+        strings: ["in die ganze Welt.", "zu ihrem geliebten", "zum kaufen","um zu handeln"],
+        // Optionally use an HTML element to grab strings from (must wrap each string in a <p>)
+        stringsElement: null,
+        // typing speed
+        typeSpeed: 90,
+        // time before typing starts
+        startDelay: 600,
+        // backspacing speed
+        backSpeed: 10,
+        // time before backspacing
+        backDelay: 900,
+        // loop
+        loop: true,
+        // false = infinite
+        loopCount: false,
+        // show cursor
+        showCursor: false,
+        // character for cursor
+        cursorChar: "❤️",
+        // attribute to type (null == text)
+        attr: null,
+        // either html or text
+        contentType: "html",
+        // call when done callback function
+        callback: function () {},
+        // starting callback function before each string
+        preStringTyped: function () {},
+        //callback for every typed string
+        onStringTyped: function () {},
+        // callback for reset
+        resetCallback: function () {},
+      });
+    });
+  
   return (
     <main className="mt-8 max-auto max-w-full px-4 sm:mt-12 sm:px-6 lg:mt-24 ">
       <div className="flex max-w-full max-auto justify-center items-center">
         <div className="flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
           <div className="flex flex-1 justify-start flex-col mf:mr-10">
-            <h1 className="text-3xl sm:text-5xl font-bold text-lime py-1  text-gradient-2">
-              Senden Sie Crypto <br /> in die ganze Welt
-            </h1>
-            <p className="text-lime-400 text-left m-5 font-light md:w-9/12 w-11/12 text-base">
+            <div className="py-2">
+              <h1 className="text-3xl sm:text-5xl font-bold  py-1  text-gradient-2">
+                Senden Sie Crypto <br />{" "}
+              </h1>
+              <span className="type  text-lime-500 font-bold" ref={el}>
+                
+              </span>
+            </div>
+            <p className="text-lime-400 text-left m-5 font-light md:w-9/12 w-11/12 text-base mt-9">
               Entdecken Sie die Welt der Kryptowährungen und senden Sie
               Kryptowährungen an jeden und überall,
             </p>
