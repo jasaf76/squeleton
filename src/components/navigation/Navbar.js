@@ -13,6 +13,7 @@ const navigation = [
     { name: 'Servicios', href: '/blog', current: false },
     { name: 'Nosotros', href: '/nosotros', current: false },
     { name: 'Contacto', href: '/contacto', current: false },
+    { name: 'Ntf Market', href: '/nfmarket', current: false}
 ]
 
 
@@ -295,7 +296,7 @@ function Navbar({ account, ethereum_balance,network, my_user }) {
             <div className="flex">
               <i className="bx bx-phone mt-0.5 mr-1 text-gray-500 dark:text-dark-txt"></i>{" "}
               <span className="text-gray-500 dark:text-dark-txt text-xs font-gilroy-bold">
-                +51 961-571-208
+                +49 0163/82-60-784
               </span>
               <span
                 className="h-6 w-px bg-gray-400 dark:bg-dark-third mx-2"
@@ -303,7 +304,9 @@ function Navbar({ account, ethereum_balance,network, my_user }) {
               />
               <i className="bx bxl-gmail mt-0.5 mr-1 text-gray-500 dark:text-dark-txt"></i>{" "}
               <span className="text-gray-500 dark:text-dark-txt text-xs font-gilroy-bold">
-                mail@solopython.com
+                <a href="mailto: gottfugthinzu@gmail.com">
+                  gottfugthinzu@gmail
+                </a>
               </span>
             </div>
           </form>
@@ -321,7 +324,7 @@ function Navbar({ account, ethereum_balance,network, my_user }) {
               href="https://go.coinmama.com/visit/?bta=68123&brand=coinmama"
               target="_blank"
               className="text-sm font-gilroy-semibold text-gray-400 hover:text-blue-600">
-              Comprar
+              Kaufen
             </a>
             {social.social.map((item) => (
               <a
@@ -356,8 +359,8 @@ function Navbar({ account, ethereum_balance,network, my_user }) {
                     <NavLink to="/">
                       {/* Dark Image */}
                       <img
-                        src="https://bafybeieh27hiity5cm7q2z5tic7oka6wd52dxnmqj5wtducckqic4c4aia.ipfs.dweb.link/Solopython-logo.png"
-                        width={35}
+                        src="https://res.cloudinary.com/jasaf77/image/upload/v1662358846/logo_lter4i.gif"
+                        width={65}
                         height={25}
                         layout="fixed"
                         alt=""
@@ -365,9 +368,9 @@ function Navbar({ account, ethereum_balance,network, my_user }) {
                       />
                       {/* White Image */}
                       <img
-                        src="https://bafybeieh27hiity5cm7q2z5tic7oka6wd52dxnmqj5wtducckqic4c4aia.ipfs.dweb.link/Solopython-logo.png"
-                        width={35}
-                        height={25}
+                        src="https://res.cloudinary.com/jasaf77/image/upload/v1662358846/logo_lter4i.gif"
+                        width={65}
+                        height={55}
                         layout="fixed"
                         alt=""
                         className="hidden md:hidden dark:flex"
@@ -379,16 +382,16 @@ function Navbar({ account, ethereum_balance,network, my_user }) {
                     <NavLink
                       to="/datasets"
                       className="mx-4 text-lg dark:hover:text-white hover:text-blue-600 text-gray-600 dark:text-dark-txt text-md font-gilroy-semibold">
-                      Datasets
+                      Datensätze
                     </NavLink>
                   </div>
                 </div>
 
-                <div className="min-w-0 flex-1 md:px-8 lg:px-0 xl:col-span-6">
+                <div className="min-w-0 flex-1 md:px-8 lg:px-0 xl:col-span-6 ml-[60px]">
                   <div className="flex items-center px-6 py-4 md:max-w-md md:mx-auto lg:max-w-auto lg:mx-0 xl:px-0">
                     <form onSubmit={(e) => onSubmit(e)} className="w-full">
                       <label htmlFor="search" className="sr-only">
-                        Search
+                        Suche
                       </label>
                       <div className="relative">
                         <button
@@ -431,11 +434,11 @@ function Navbar({ account, ethereum_balance,network, my_user }) {
                   </Popover.Button>
                 </div>
 
-                <div className="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
+                <div className="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4 ml-[500px]">
                   <NavLink
                     to="/cursos"
                     className="mx-4 text-lg dark:hover:text-white hover:text-blue-600 text-gray-600 dark:text-dark-txt text-md font-gilroy-semibold">
-                    Cursos
+                    Kursen
                   </NavLink>
                   <NavLink
                     to="/blog"
@@ -445,17 +448,22 @@ function Navbar({ account, ethereum_balance,network, my_user }) {
                   <NavLink
                     to="/servicios"
                     className="mx-4 text-lg dark:hover:text-white hover:text-blue-600 text-gray-600 dark:text-dark-txt text-md font-gilroy-semibold">
-                    Servicios
+                    Dienstleistungen
                   </NavLink>
                   <NavLink
                     to="/nosotros"
                     className="mx-4 text-lg dark:hover:text-white hover:text-blue-600 text-gray-600 dark:text-dark-txt text-md font-gilroy-semibold">
-                    Nosotros
+                    Über Uns
                   </NavLink>
                   <NavLink
                     to="/contacto"
                     className="mx-4 text-lg dark:hover:text-white hover:text-blue-600 text-gray-600 dark:text-dark-txt text-md font-gilroy-semibold">
-                    Contacto
+                    Kontakt
+                  </NavLink>
+                  <NavLink
+                    to="/NTF Market"
+                    className="mx-4 text-lg dark:hover:text-white hover:text-blue-600 text-gray-600 dark:text-dark-txt text-md font-gilroy-semibold">
+                    NTF Market
                   </NavLink>
                   {/*                     
                     {

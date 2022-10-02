@@ -199,7 +199,7 @@ function Header() {
         // time before typing starts
         startDelay: 600,
         // backspacing speed
-        backSpeed: 10,
+        backSpeed: 20,
         // time before backspacing
         backDelay: 900,
         // loop
@@ -234,7 +234,7 @@ function Header() {
               <h1 className="text-3xl sm:text-5xl font-bold  py-1  text-gradient-2">
                 Senden Sie Crypto <br />{" "}
               </h1>
-              <span className="type  text-lime-500 font-bold" ref={el}>
+              <span className="type text-[30px] text-lime-500 font-bold" ref={el}>
                 
               </span>
             </div>
