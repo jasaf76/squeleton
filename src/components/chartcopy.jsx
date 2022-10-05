@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import Chart from "chart.js";
+import Chartjs from "chart.js";
 import { historyOptions } from "../chartConfigs/chartConfigs";
 
 const styles = {
@@ -36,16 +36,16 @@ const HistoryChart = ({ data }) => {
 
   useEffect(() => {
     if (chartRef && chartRef.current && detail) {
-    const ctx = document.getElementById("myChart");
-      const myChart = new Chart(chartRef.current, {
-        type: "line",
+      console.log("yeah");
+      const chartInstance = new Chartjs(chartRef.current, {
+        type: "bar",
         data: {
           datasets: [
             {
               label: `${detail.name} price`,
               data: determineTimeFormat(),
               backgroundColor: "rgba(74, 305, 194, 0.5)",
-              borderColor: "rgba(174, 305, 194, 0.4)",
+              borderColor: "rgba(174, 305, 194, 0.4",
               pointRadius: 0,
             },
           ],
@@ -55,7 +55,7 @@ const HistoryChart = ({ data }) => {
         },
       });
       return () => {
-        myChart.destroy();
+        chartInstance.destroy();
       };
     }
   });
