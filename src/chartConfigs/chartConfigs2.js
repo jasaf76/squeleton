@@ -2,20 +2,19 @@ export const OptionsH = {
   lineHeightAnnotation: {
     always: true,
     hover: true,
-    lineWeight: 1.5,
+
   },
 
-  animation: {
+    legend: {
+      labels: {
+     
+      },
+    },
+    animation: {
     duration: 2000,
+    easing: 'easeInOutQuad',
   },
   maintainAspectRatio: false,
   responsive: true,
-  scales: {
-    xAxes: [
-      {
-        type: "time",
-        distribution: "pie",
-      },
-    ],
-  },
+  
 };

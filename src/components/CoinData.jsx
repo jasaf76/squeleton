@@ -5,12 +5,14 @@ import { OptionsH } from "../chartConfigs/chartConfigs2";
 
 const CoinData = ({ data }) => {
   const chartRef1 = useRef();
-  const [timeFormat, setTimeFormat] = useState("24h");
-  const detail = data;
+  const chartRef2 = useRef();
+  const chartRef3 = useRef();
+ 
 
   useEffect(() => {
-    if (chartRef1 && chartRef1.current && detail) {
+    if (chartRef1 && chartRef1.current) {
       const ctx = document.getElementById("Circulo");
+      Chart.defaults.global.defaultFontColor = "white";
       const Circulo = new Chart(chartRef1.current, {
         type: "pie",
         data: {
@@ -27,10 +29,11 @@ const CoinData = ({ data }) => {
             },
           ],
           labels: [
-            ` Coin ${data.market_cap}`,
-            `${data.market_cap * 2.5533} Total Marktkapitalisierung`,
+            `Coin ${data.market_cap}`,
+            `[api endpoint searching] Total Marktkapitalisierung`,
           ],
         },
+
         options: {
           ...OptionsH,
         },
@@ -41,23 +44,62 @@ const CoinData = ({ data }) => {
     }
   });
 
+  useEffect(() => {
+   
+      if (chartRef2 && chartRef2.current) {
+        const ctx = document.getElementById("Circulo2");
+        Chart.defaults.global.defaultFontColor = "white";
+        const Circulo2 = new Chart(chartRef2.current, {
+          type: "pie",
+          data: {
+            datasets: [
+              {
+                label: "Gesamtversorgung",
+                data: [`${data.total_supply}`,`${data.total_supply / 2}`],
+                backgroundColor: [
+                  "rgba(74, 305, 194, 0.5)",
+                  "rgba(714, 305, 194, 0.5)",
+                ],
+                borderColor: "rgba(194, 05, 194, 0.4)",
+                pointRadius: 0,
+              },
+            ],
+            labels: [`Coin ${data.total_supply}`, `${data.total_supply / 2}`],
+          },
+
+          options: {
+            ...OptionsH,
+          },
+        });
+        return () => {
+          Circulo2.destroy();
+        };
+      }
+    });
+
+
   const renderData = () => {
     if (data) {
       return (
-        <div className=" p-2 ml-[330px] rounded-lg bg-[#171924] text-white w-[1350px]  h-[250px] border border-gray-500/10 ">
+        <div className="my-9 p-2 ml-[210px] rounded-lg bg-[#171924] text-white w-[1550px]  h-[750px] border border-gray-500/10 ">
           <div className="flex flex-row justify-center border border-gray-500/10 rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-cover">
-            <div className="flex flex-row justify-between my-4">
-              <span className="text-muted coin-data-category mr-4">
-                Market Cap
-              </span>
+            <div className="mr-[500px] flex">
+              <canvas
+                id="Circulo"
+                ref={chartRef1}
+                width="300"
+                height="150"></canvas>
+            </div>
+            <div>
+              <canvas
+                id="Circulo"
+                ref={chartRef2}
+                width="300"
+                height="150"></canvas>
+            </div>
 
-              <span className="mr-[300px]">{data.market_cap}</span>
-            </div>
             <hr />
-            <div className="flex flex-row justify-between my-4 ">
-              <span className="text-muted mr-4">Total Supply</span>
-              <span>{data.total_supply}</span>
-            </div>
+           
           </div>
           <div className="flex flex-row justify-center mt-[40px] border border-gray-500/10 rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500  bg-cover  ">
             <div className="flex flex-row justify-between items-start my-4">
@@ -79,12 +121,7 @@ const CoinData = ({ data }) => {
               </div>
             </div>
           </div>
-          <canvas
-            id="Circulo"
-            ref={chartRef1}
-            width="200"
-            height="200"></canvas>
-          ;
+
           <div className="flex flex-row justify-center mt-[40px] border border-gray-500/10  rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ">
             <div className="flex flex-row justify-between mr-4 my-4">
               <span className="text-muted coin-data-category mr-4">
@@ -105,7 +142,7 @@ const CoinData = ({ data }) => {
     }
   };
 
-  return <div>{renderData()}</div>;
+  return <div className="flex">{renderData()}</div>;
 };
 
 export default CoinData;
