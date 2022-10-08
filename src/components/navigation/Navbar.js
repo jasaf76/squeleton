@@ -213,7 +213,7 @@ function Navbar({ account, ethereum_balance,network, my_user }) {
                   className={`
                                         ${open ? "" : "text-opacity-90"}
                                         group inline-flex items-center rounded-xl mr-0.5 bg-rose-200 hover:bg-rose-300 px-3 py-2 text-sm font-gilroy-semibold text-rose-700 hover:text-rose-800 hover:text-opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}>
-                  <span>Change Network</span>
+                  <span>Netz wechseln</span>
                   <ChevronDownIcon
                     className={`${open ? "" : "text-opacity-70"}
                                             ml-2 h-5 w-5 text-rose-400 hover:text-rose-500 transition duration-150 ease-in-out group-hover:text-opacity-80`}

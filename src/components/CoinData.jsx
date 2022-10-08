@@ -50,12 +50,12 @@ const CoinData = ({ data }) => {
         const ctx = document.getElementById("Circulo2");
         Chart.defaults.global.defaultFontColor = "white";
         const Circulo2 = new Chart(chartRef2.current, {
-          type: "pie",
+          type: "doughnut",
           data: {
             datasets: [
               {
                 label: "Gesamtversorgung",
-                data: [`${data.total_supply}`,`${data.total_supply / 2}`],
+                data: [`${data.total_supply}`, `${data.total_volume}`],
                 backgroundColor: [
                   "rgba(74, 305, 194, 0.5)",
                   "rgba(714, 305, 194, 0.5)",
@@ -64,7 +64,10 @@ const CoinData = ({ data }) => {
                 pointRadius: 0,
               },
             ],
-            labels: [`Coin ${data.total_supply}`, `${data.total_supply / 2}`],
+            labels: [
+              `Coin ${data.total_supply} Coin`,
+              `${data.total_supply / 8} Gesamtversorgung`,
+            ],
           },
 
           options: {
@@ -77,29 +80,69 @@ const CoinData = ({ data }) => {
       }
     });
 
+  
+    useEffect(() => {
+      if (chartRef3 && chartRef3.current) {
+        const ctx = document.getElementById("Circulo2");
+        Chart.defaults.global.defaultFontColor = "white";
+        const Circulo2 = new Chart(chartRef3.current, {
+          type: "pie",
+          data: {
+            datasets: [
+              {
+                label: "Volumen 24H",
+                data: [`${data.total_volume}`, `${data.total_volume }`],
+                backgroundColor: [
+                  "rgba(74, 305, 194, 0.5)",
+                  "rgba(714, 305, 194, 0.5)",
+                ],
+                borderColor: "rgba(194, 05, 194, 0.4)",
+                pointRadius: 0,
+              },
+            ],
+            labels: [
+              `Coin ${data.total_volume} Coin`,
+              `${data.total_volume} Gesamtversorgung`,
+            ],
+          },
+
+          options: {
+            ...OptionsH,
+          },
+        });
+        return () => {
+          Circulo2.destroy();
+        };
+      }
+    });
 
   const renderData = () => {
     if (data) {
       return (
         <div className="my-9 p-2 ml-[210px] rounded-lg bg-[#171924] text-white w-[1550px]  h-[750px] border border-gray-500/10 ">
           <div className="flex flex-row justify-center border border-gray-500/10 rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-cover">
-            <div className="mr-[500px] flex">
+            <div className="mr-[300px] flex">
               <canvas
                 id="Circulo"
                 ref={chartRef1}
                 width="300"
                 height="150"></canvas>
             </div>
-            <div>
+            <div className="mr-[300px]">
               <canvas
                 id="Circulo"
                 ref={chartRef2}
                 width="300"
                 height="150"></canvas>
             </div>
-
+            <div >
+              <canvas
+                id="Circulo"
+                ref={chartRef3}
+                width="300"
+                height="150"></canvas>
+            </div>
             <hr />
-           
           </div>
           <div className="flex flex-row justify-center mt-[40px] border border-gray-500/10 rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500  bg-cover  ">
             <div className="flex flex-row justify-between items-start my-4">
