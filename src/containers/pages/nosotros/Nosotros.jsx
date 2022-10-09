@@ -3,7 +3,8 @@ import { connect } from "react-redux"
 import { Fragment, useEffect } from 'react'
 import { Tab } from '@headlessui/react'
 import { Link } from "react-router-dom"
-
+import { Canvas, useFrame } from "@react-three/fiber";
+import Avatar from '../../../components/avatar/Avatar';
 const tabs = [
   {
     name: "Carednewhope Network",

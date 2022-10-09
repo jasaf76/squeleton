@@ -16,9 +16,9 @@ const styles = {
   flexCenter: `flex items-center`,
 };
 
-const HistoryChart = ({ data }) => {
+const HistoryChart = ({ data,coin }) => {
   const chartRef = useRef();
-  const { day, week, year, detail } = data;
+  const { day, week, year,detail } = data;
   const [timeFormat, setTimeFormat] = useState("24h");
 
   const determineTimeFormat = () => {
@@ -36,20 +36,25 @@ const HistoryChart = ({ data }) => {
 
   useEffect(() => {
     if (chartRef && chartRef.current && detail) {
-    const ctx = document.getElementById("myChart");
+    
+      const ctx = document.getElementById("myChart");
       const myChart = new Chart(chartRef.current, {
         type: "line",
         data: {
           datasets: [
             {
-              label: `${detail.name} price`,
+              label: `${detail.name} price und Platz ${detail.market_cap_rank} `,
               data: determineTimeFormat(),
               backgroundColor: "rgba(74, 305, 194, 0.5)",
               borderColor: "rgba(174, 305, 194, 0.4)",
               pointRadius: 0,
             },
           ],
+          tension: 0.4,
+        
         },
+        //config
+        
         options: {
           ...historyOptions,
         },
@@ -80,7 +85,11 @@ const HistoryChart = ({ data }) => {
   return (
     <main className={styles.main}>
       <div className={styles.flexStart}>
+        <div className="mr-[20px]"></div>
         {renderPrice()}
+        <div>
+          
+         </div>
         <div className={styles.tabContainerWrapper}>
           <div className={styles.flexBetween}>
             <div className={styles.tabContainer}>
