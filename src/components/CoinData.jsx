@@ -2,7 +2,8 @@ import React, { useRef, useEffect, useState } from "react";
 //import { Chart_anillos } from "chartjs/Chart_anillos";
 import Chart from "chart.js";
 import { OptionsH } from "../chartConfigs/chartConfigs2";
-
+import { OptionsHi } from "../chartConfigs/chartConfigs3";
+import { Radar } from "react-chartjs-2";
 const CoinData = ({ data }) => {
   const chartRef1 = useRef();
   const chartRef2 = useRef();
@@ -47,31 +48,56 @@ const CoinData = ({ data }) => {
   useEffect(() => {
    
       if (chartRef2 && chartRef2.current) {
-        const ctx = document.getElementById("Circulo2");
-        Chart.defaults.global.defaultFontColor = "white";
+        const ctx = document.getElementById("circulo3");
+       
         const Circulo2 = new Chart(chartRef2.current, {
-          type: "doughnut",
+          type: "radar",
           data: {
+            labels: ["X", "high_24h", "Y", "low_24h"],
             datasets: [
               {
-                label: "Gesamtversorgung",
-                data: [`${data.total_supply}`, `${data.total_volume}`],
-                backgroundColor: [
-                  "rgba(74, 305, 194, 0.5)",
-                  "rgba(714, 305, 194, 0.5)",
-                ],
-                borderColor: "rgba(194, 05, 194, 0.4)",
-                pointRadius: 0,
+                label: `low_24h`,
+                backgroundColor: [0, "transparent"],
+                borderColor: ["#00ff00"],
+                borderWidth: 2,
+                data: [0, 0, `${data.low_24h}`, `${data.high_24h}`],
+                lineTension: 0,
+                fill: false,
+                borderColor: "red",
+                backgroundColor: "green",
+                borderDash: [5, 5],
+                pointBorderColor: "green",
+                pointBackgroundColor: "rgba(355,650,0,0.5)",
+                pointRadius: 5,
+                pointHoverRadius: 10,
+                pointHitRadius: 30,
+                pointBorderWidth: 2,
+                pointStyle: "rectRounded",
               },
-            ],
-            labels: [
-              `Coin ${data.total_supply} Coin`,
-              `${data.total_supply / 8} Gesamtversorgung`,
+              {
+                label: `high_24h`,
+                backgroundColor: ["yellow"],
+                borderColor: ["yellow"],
+                borderWidth: 2,
+                data: [`${data.high_24h}`, `${data.low_24h}`, 0],
+                lineTension: 0,
+                fill: false,
+                borderColor: "rgba(122,985,6,6.6)",
+                backgroundColor: "orange",
+                borderDash: [5, 5],
+                pointBorderColor: "blue",
+                pointBackgroundColor: "rgba(255,150,0,0.5)",
+                pointRadius: 5,
+                pointHoverRadius: 10,
+                pointHitRadius: 30,
+                pointBorderWidth: 2,
+                pointStyle: "rectRounded",
+              },
             ],
           },
 
           options: {
-            ...OptionsH,
+            ...OptionsHi,
           },
         });
         return () => {
@@ -85,7 +111,7 @@ const CoinData = ({ data }) => {
       if (chartRef3 && chartRef3.current) {
         const ctx = document.getElementById("Circulo2");
         Chart.defaults.global.defaultFontColor = "white";
-        const Circulo2 = new Chart(chartRef3.current, {
+        const Circulo3 = new Chart(chartRef3.current, {
           type: "pie",
           data: {
             datasets: [
@@ -111,7 +137,7 @@ const CoinData = ({ data }) => {
           },
         });
         return () => {
-          Circulo2.destroy();
+          Circulo3.destroy();
         };
       }
     });
@@ -128,16 +154,10 @@ const CoinData = ({ data }) => {
                 width="300"
                 height="150"></canvas>
             </div>
-            <div className="mr-[300px]">
+
+            <div>
               <canvas
-                id="Circulo"
-                ref={chartRef2}
-                width="300"
-                height="150"></canvas>
-            </div>
-            <div >
-              <canvas
-                id="Circulo"
+                id="Circulo2"
                 ref={chartRef3}
                 width="300"
                 height="150"></canvas>
@@ -146,15 +166,22 @@ const CoinData = ({ data }) => {
           </div>
           <div className="flex flex-row justify-center mt-[40px] border border-gray-500/10 rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500  bg-cover  ">
             <div className="flex flex-row justify-between items-start my-4">
-              <div className="ml-[170px] ">
+              <div className="flex flex-col">
                 <span className="text-muted coin-data-category mr-4">
-                  Volume(24H)
+                  low 24h
                 </span>
-                <span className="mr-[400px]">{data.total_volume}</span>
+                <span>{data.low_24h}</span>
+              </div>
+              <div className="ml-[100px]">
+                <canvas
+                  id="Circulo"
+                  ref={chartRef2}
+                  width="500"
+                  height="500"></canvas>
               </div>
             </div>
             <hr />
-            <div className="flex flex-row justify-between items-start my-4">
+            <div className="flex flex-row justify-between items-start my-4 ml-[100px]">
               <div className="mr-[170px] ">
                 <span className="text-muted coin-data-category mr-4">
                   high 24h
@@ -173,12 +200,6 @@ const CoinData = ({ data }) => {
               <span className="mr-[350px]">{data.circulating_supply}</span>
             </div>
             <hr />
-            <div className="flex flex-col">
-              <span className="text-muted coin-data-category mr-4">
-                low 24h
-              </span>
-              <span>{data.low_24h}</span>
-            </div>
           </div>
         </div>
       );
