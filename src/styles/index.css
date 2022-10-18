@@ -26,7 +26,7 @@ visibility: hidden;
 .rec-carousel-item:focus {
 outline: none;
 box-shadow: inset 0 0 1px 1px lightgrey;
-background-color: #eaeaea;
+background-color: #c8e911;
 }
 
 body {
@@ -34,6 +34,8 @@ margin: 0;
   font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #b7ff0e;
+  
 }
 
 body.dark {
